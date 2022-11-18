@@ -1,4 +1,9 @@
 <h1 align="center"> RBXFont </h2>
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/github/stars/oxi-dev0/RBXFont" alt="Stars">
+    </a>
+</p>
 <h3 align="center"> A system for real-time text labels using custom fonts in roblox. </h3>
 <h6 align="center"> Currently, only Monospaced Fonts are supported. This may change in the future. </h6>
 <br>
