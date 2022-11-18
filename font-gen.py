@@ -11,21 +11,24 @@ root = tk.Tk()
 root.withdraw()
 
 print("Loading Config...")
-f = open("config.txt", "r")
+f = open('config.txt', encoding="utf-8")
 configText = f.read()
 f.close()
 configData = {}
 for line in configText.split("\n"):
-    line = ''.join(line.split())
-    configData[line.split("=")[0]] = line.split("=")[1]
+    line = ''.join(line.split(" "))
+    configData[line.split("=")[0]] = '='.join(line.split("=")[1:])
 
 requiredConfigEntries = ['charSize', 'charSet']
 for entry in requiredConfigEntries:
     if not entry in configData:
         raise ExceptionError(f'Error > "{entry}" is missing in the config.')
         
-charSize = (configData['charSize'].split(",")[0], configData['charSize'].split(",")[1])
+charSize = (int(configData['charSize'].split(",")[0]), int(configData['charSize'].split(",")[1]))
 characters = configData['charSet']
+
+print("Done.")
+print("")
 
 images = []
 fontFile = filedialog.askopenfilename(title="Select font", initialdir="/fonts", filetypes=[('Font File', '.ttf'),('Font File', '.otf')])
