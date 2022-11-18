@@ -1,0 +1,2 @@
+charSet=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"£$%^&*()_+-={}[]~#:@;'<>,.?/\\
+charSize=100,140

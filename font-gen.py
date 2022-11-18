@@ -10,6 +10,23 @@ from time import sleep
 root = tk.Tk()
 root.withdraw()
 
+print("Loading Config...")
+f = open("config.txt", "r")
+configText = f.read()
+f.close()
+configData = {}
+for line in configText.split("\n"):
+    line = ''.join(line.split())
+    configData[line.split("=")[0]] = line.split("=")[1]
+
+requiredConfigEntries = ['charSize', 'charSet']
+for entry in requiredConfigEntries:
+    if not entry in configData:
+        raise ExceptionError(f'Error > "{entry}" is missing in the config.')
+        
+charSize = (configData['charSize'].split(",")[0], configData['charSize'].split(",")[1])
+characters = configData['charSet']
+
 images = []
 fontFile = filedialog.askopenfilename(title="Select font", initialdir="/fonts", filetypes=[('Font File', '.ttf'),('Font File', '.otf')])
 fontName = fontFile.split("/")[len(fontFile.split("/"))-1].split(".")[0]
@@ -21,10 +38,8 @@ print("Loaded Font.")
 
 sleep(0.5)
 #charSize = (int(input("Character Image Size X: ")), int(input("Character Image Size Y: ")))
-charSize = (100,140)
-print("Assuming default Character Sprite Size of 100px x 140px.")
+print(f"Using Character Sprite Size of {charSize[0]}px x {charSize[1]}px.")
 sleep(1)
-characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"£$%^&*()_+-={}[]~#:@;'<>,.?/\\"
 
 # fraction of height that font should fit
 fontFrac = 0.9
